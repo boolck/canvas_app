@@ -1,6 +1,8 @@
-package com.codingchallenge.boolchandani.entities;
+package com.kb.canvas.model;
 
-import com.codingchallenge.boolchandani.helper.CanvasHelper;
+import com.kb.canvas.command.CommandHelper;
+import com.kb.canvas.excp.CanvasException;
+import com.kb.canvas.excp.CanvasWrongArgsException;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -8,9 +10,9 @@ import java.util.Objects;
 public class Rectangle implements Entity {
 
     private int x1,y1,x2,y2;
-    private CanvasDimension canvasDimension ;
+    private final Canvas.CanvasDimension canvasDimension ;
 
-    public Rectangle(CanvasDimension canvas) {
+    public Rectangle(Canvas.CanvasDimension canvas) {
         this.canvasDimension = canvas;
     }
 
@@ -29,15 +31,19 @@ public class Rectangle implements Entity {
     }
 
     @Override
-    public void setArguments(String[] args) throws NumberFormatException, IndexOutOfBoundsException{
-        this.x1 = Integer.valueOf(args[0]);
-        this.y1 = Integer.valueOf(args[1]);
-        this.x2 = Integer.valueOf(args[2]);
-        this.y2 = Integer.valueOf(args[3]);
+    public void setArguments(String[] args) throws CanvasException {
+        CommandHelper.validateInputArguments(args);
 
-        if(!CanvasHelper.isAllPositive(x1,y1,x2,y2)){
-            throw new NumberFormatException(CanvasHelper.NEGATIVE_NUMBER_ERROR_MSG);
+        this.x1 = Integer.parseInt(args[0]);
+        this.y1 = Integer.parseInt(args[1]);
+        this.x2 = Integer.parseInt(args[2]);
+        this.y2 = Integer.parseInt(args[3]);
+
+        if(x1 >= canvasDimension.getWidth() || y1>=canvasDimension.getHeight()
+                || x2 >= canvasDimension.getWidth() || y2>=canvasDimension.getHeight()){
+            throw new CanvasWrongArgsException("Input argument should not exceed canvas border");
         }
+
     }
 
     @Override
