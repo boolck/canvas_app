@@ -101,6 +101,13 @@ Tests in com.kb.canvas.command - \
     
 Tests in com.kb.canvas.excp - Exception Test classes
 
+## Future Requests
+Few enhancement requests in backlog to be implemented in future releases :
+1. Add logger support
+2. Remove System.in and System.out references
+3. Initialize the application with Spring Boot
+4. Any new product features
+
 ## Authors
 
 * **Kunal Boolchandani** - *Initial work* - [boolck](https://github.com/boolck)
