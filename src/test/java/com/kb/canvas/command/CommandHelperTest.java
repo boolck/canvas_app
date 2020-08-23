@@ -6,17 +6,22 @@ import org.junit.Test;
 
 public class CommandHelperTest {
 
-
     @Test
-    public void whenValidCommandPassedThenStringTypeParsed() throws CanvasWrongArgsException {
-       String cmd = CommandHelper.getCommandTypeString("C 10 20");
+    public void whenValidQuitCommandPassedThenStringTypeParsed() throws CanvasWrongArgsException {
+        String cmd = CommandHelper.getCommandTypeString("Q");
+        Assert.assertEquals("Q",cmd);
+    }
+    
+    @Test
+    public void whenValidCanvasCommandPassedThenStringTypeParsed() throws CanvasWrongArgsException {
+       String cmd = CommandHelper.getCommandTypeString("C 20 4");
        Assert.assertEquals("C",cmd);
     }
 
     @Test
-    public void whenValidCommandPassedThenArgumentsParsed() throws CanvasWrongArgsException {
-        String[] args = CommandHelper.getCommandStringArgs("C 10 20");
-        Assert.assertArrayEquals(new String[]{"10","20"},args);
+    public void whenValidCanvasCommandPassedThenArgumentsParsed() throws CanvasWrongArgsException {
+        String[] args = CommandHelper.getCommandStringArgs("C 20 4");
+        Assert.assertArrayEquals(new String[]{"20","4"},args);
     }
 
     @Test(expected=CanvasWrongArgsException.class)

@@ -13,7 +13,7 @@ public interface Entity
     default void validateAndSet(String[] args, CommandType cmdType) throws CanvasException{
         if (args == null || cmdType == null) {
             throw new CanvasWrongArgsException("Wrong Arguments Passed");
-        } else if (args.length != cmdType.getParametersRequired()) {
+        } else if (args.length != cmdType.getArity()) {
             throw new CanvasWrongArgsException("Arguments length dont match expected count for Commandtype");
         }
 

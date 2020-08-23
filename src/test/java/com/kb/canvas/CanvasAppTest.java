@@ -29,6 +29,23 @@ public class CanvasAppTest {
     }
 
     @Test
+    public void whenFirstCommandIsQuitThenNoConsole()  throws CanvasException{
+        boolean continueDrawing = app.createCanvasUntilQuitCommand("Q");
+        Assert.assertFalse(continueDrawing);
+    }
+
+    @Test(expected = CanvasWrongArgsException.class)
+    public void whenBadCommandPassedThenExceptionThrown()  throws CanvasException{
+        app.createCanvasUntilQuitCommand("X");
+    }
+
+    @Test
+    public void whenCanvasCommandPassedThenPrintShouldContinue() throws CanvasException {
+        boolean continueDrawing =app.createCanvasUntilQuitCommand("C 20 4");
+        Assert.assertTrue(continueDrawing);
+    }
+
+    @Test
     public void whenCanvasCommandPassedThenCanvasPrintedToConsole()  throws CanvasException{
         String command = new StringBuilder("C 20 4").append("%n").append("Q").toString();
         final ByteArrayInputStream inputStream = new ByteArrayInputStream(String.format(command).getBytes());
@@ -95,27 +112,7 @@ public class CanvasAppTest {
         Assert.assertEquals(expected,outContent.toString());
     }
 
-    @Test
-    public void whenQuitCommandPassedThenFlagReturned() throws CanvasException {
-        app.createCanvasUntilQuitCommand("C 20 4");
-        boolean continueDrawing = app.createCanvasUntilQuitCommand("Q");
-        Assert.assertFalse(continueDrawing);
-    }
 
-    @Test(expected= CanvasWrongArgsException.class)
-    public void whenUnknownCommandPassedThenExceptionThrown() throws CanvasException {
-        app.createCanvasUntilQuitCommand("XYZ 2 10");
-    }
-
-    @Test(expected= CanvasWrongArgsException.class)
-    public void whenInvalidCommandPassedThenExceptionThrown() throws CanvasException {
-        app.createCanvasUntilQuitCommand("C210");
-    }
-
-    @Test(expected= CanvasWrongArgsException.class)
-    public void whenEmptyCommandPassedThenExceptionThrown() throws CanvasException {
-        app.createCanvasUntilQuitCommand("");
-    }
 
 
     @Test

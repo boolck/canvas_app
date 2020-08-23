@@ -2,6 +2,7 @@ package com.kb.canvas;
 
 import com.kb.canvas.command.*;
 import com.kb.canvas.excp.CanvasException;
+import com.kb.canvas.excp.CanvasWrongArgsException;
 import com.kb.canvas.executor.DrawingExecutor;
 
 import java.io.InputStream;
@@ -46,9 +47,10 @@ public class CanvasApp {
     public boolean createCanvasUntilQuitCommand(String userInput) throws CanvasException{
         String cmdStr = CommandHelper.getCommandTypeString(userInput);
         CommandType cmdType = CommandType.getTypeFor(cmdStr);
-        Objects.requireNonNull(cmdType,"CommandType should not be null");
-
-        if (CommandType.CMD_QUIT == cmdType) {
+        if(cmdType==null){
+            throw new CanvasWrongArgsException("Not a valid command");
+        }
+        else if (CommandType.CMD_QUIT == cmdType) {
             return false;
         }
         else {

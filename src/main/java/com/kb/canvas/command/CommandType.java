@@ -9,15 +9,15 @@ public enum CommandType
     CMD_QUIT("Q", 0);
 
     private final String value;
-    private final int parametersRequired;
+    private final int arity;
 
-    public int getParametersRequired() {
-        return parametersRequired;
+    public int getArity() {
+        return arity;
     }
 
-    CommandType(String value, int parametersRequired) {
+    CommandType(String value, int arity) {
         this.value = value;
-        this.parametersRequired = parametersRequired;
+        this.arity = arity;
     }
 
     /**
