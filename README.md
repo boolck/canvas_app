@@ -110,7 +110,7 @@ Few enhancement requests in backlog to be implemented in future releases :
 
 ## Authors
 
-* **Kunal Boolchandani** - *Initial work* - [boolck](https://github.com/boolck)
+* **<add your name>** - *Initial work* - [boolck](https://github.com/boolck)
 
 ## References
 
