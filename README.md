@@ -1,6 +1,6 @@
 # CanvasApp
 
-CanvasApp is an canvas drawing application that takes command line arguments to draw shapes 
+Credit Suisse Take Home Programming Exercise : CanvasApp is an canvas drawing application that takes command line arguments to draw shapes 
 of canvas, lines, rectangles and box fill.
 
 ## How was TDD Done/ What's new in this release ?
